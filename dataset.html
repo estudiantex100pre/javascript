@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>dataset</title>
+	<style type="text/css">
+		ul li:before{
+			content:attr(data-city) "-------";
+		}
+		ul{
+			width: 300px ; 
+			margin: auto ;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="user" data-name="Arkaitz Garro" data-city="Donostia" data-lang="es" data-food="Txuleta">Arkaitz Garro</li>
+		<li class="user" data-name="John Doe" data-city="Boston" data-lang="en" data-food="Bacon">John Doe</li>
+		<li class="user" data-name="Divya Resig" data-city="Tokyo"
+		data-lang="jp" data-food="Sushi" data-delete="true">Divya Resig</li>
+	</ul>
+
+	<ul>
+		<li class="user" data-name="2Arkaitz Garro" data-city="2Donostia"
+		data-lang="2es" data-food="2Txuleta">Arkaitz Garro</li>
+		<li class="user" data-name="2John Doe" data-city="2Boston"
+		data-lang="2en" data-food="2Bacon">John Doe</li>
+		<li class="user" data-name="2Divya Resig" data-city="2Tokyo"
+		data-lang="2jp" data-food="2Sushi" data-delete="2true">Divya Resig</li>
+	</ul>
+	<pre>
+		Obtener cada uno de los atributos data- de los elementos de la lista, y mostrarlos por consola.
+		Modificar el idioma es por es_ES.
+		Eliminar los elementos de la lista cuyo atributo data-delete sea true.
+	</pre>
+	<script type="text/javascript">
+		var menu = document.getElementsByTagName('ul') ;
+	/*	console.log(menu.length)
+		console.log	(menu[0].children.length)
+		console.log(menu[0].children[1].dataset.name)
+		console.log(menu[0].children.length-1 )	
+		console.log(menu[0].children[2].dataset.delete) */
+
+		for(var i=0 ; i < 2 ; i ++) 
+			for(var j =0 ; j < 3; j++){
+				console.log("hijo=" + j)
+				console.log("name: " +menu[i].children[j].dataset.name);
+				console.log("city: " +menu[i].children[j].dataset.city);
+				if(menu[i].children[j].dataset.lang == "es")
+					menu[i].children[j].dataset.lang = "ES"
+				console.log("lang: " +menu[i].children[j].dataset.lang);
+				console.log("food: " +menu[i].children[j].dataset.food);
+				if(menu[i].children.length -1 == j)
+					if(menu[i].children[j].dataset.delete == "true")
+						menu[i].children[j].dataset.delete = null ;
+					console.log("delete: " +menu[i].children[j].dataset.delete)
+			}  
+		
+		
+	</script>
+</body>
+</html>

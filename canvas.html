@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas</title>
+	<style type="text/css">
+		body{
+			display: flex; 
+			justify-content: center;
+			align-items: center ;
+			height: calc(100vh - 75px) ;
+			background-color: #ccc ;
+
+		}
+		canvas {
+			background-color: orange;
+			height: 300px ;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="lienzo" height="300"></canvas>
+	<script type="text/javascript">
+		let elemento = document.getElementById('lienzo') ;
+		let canvas= elemento.getContext("2d") ;
+		let x = 500 ;
+		
+		canvas.beginPath() ;
+		canvas.moveTo(0,25) ;
+		canvas.lineTo(200,25) ;
+		canvas.lineTo(240,125) ;
+		canvas.lineTo(100,145) ;
+		canvas.lineTo(0,25) ;
+		canvas.clip();
+		// canvas.closePath() ;
+		canvas.stroke();
+		canvas.beginPath() ;
+		canvas.moveTo(0,40) ;
+		canvas.lineTo(200,40) ; 
+		canvas.moveTo(0,80) ;
+		canvas.lineTo(250,80) ;
+	
+		canvas.stroke();//  canvas.fill()
+		ctx=canvas ;
+		ctx.beginPath();
+		ctx.arc(75,75,50,0,Math.PI*2,true); // círculo exterior
+//		ctx.closePath();
+		ctx.fill();
+
+		ctx.fillStyle = '#FFF';
+		ctx.beginPath();
+		ctx.arc(75,75,35,0,Math.PI,false); // boca (dextrógiro)
+//		ctx.closePath();
+		ctx.fill();
+
+//		ctx.moveTo(65,65);
+		ctx.beginPath();
+		ctx.arc(60,65,5,0,Math.PI*2,true); // ojo izquierdo
+//		ctx.closePath();
+		ctx.fill();
+
+//		ctx.moveTo(95,65);
+		ctx.beginPath();
+		ctx.arc(90,65,5,0,Math.PI*2,true); // ojo derecho
+//		ctx.closePath();
+		ctx.fill();
+
+		
+
+	/*	for(var i=0;i<4;i++){
+			for(var j=0;j<3;j++){
+				ctx.beginPath();
+				var x = 25+j*50; // coordenada x
+				var y = 25+i*50; // coordenada y
+				var radius = 20; // radio del arco
+				var startAngle = 0; // punto inicial del círculo
+				var endAngle = (Math.PI+(Math.PI*j)/2); // punto final
+			//	var anticlockwise = i%2==0 ? false : true;
+				ctx.arc(x,y,radius,startAngle,endAngle, true);
+				if (i>1){
+				ctx.fill();
+				} else {
+				ctx.stroke();
+				}
+			}
+		}*/
+	
+
+	 
+
+/*	//	let degradado = canvas.createLinearGradient(50,150,300,150) ;
+		let degradado = canvas.createRadialGradient(150,75,30,150,75,150) ;
+		// declarando gradient en el canvas 
+		degradado.addColorStop(0, "blue")  ; 
+		degradado.addColorStop(.3, "#fff")  ;
+		degradado.addColorStop(1, "red")  ;
+		// agsinando los colores segun la ubicacion del canvas 0% =0.0 100%=1.0
+		canvas.fillStyle=degradado ;
+		canvas.fillRect(0, 0, 300, 150) ;
+*/
+		/*
+		canvas.fillStyle = "green" ;
+		canvas.strokeRect(90,15,120,120) ;
+		canvas.fillRect(100, 25, 100, 100) ;
+		canvas.strokeStyle= "red" ;
+		canvas.globalAlpha=".5" ;
+		canvas.strokeRect(110, 35, 80, 80) ; 
+		canvas.clearRect(115, 40, 70, 70) ;   */
+
+	</script>
+</body>
+</html>

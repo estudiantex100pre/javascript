@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>promesas</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		 
+	/*	const x=104;
+		const p = new Promise((r,re)=>{
+			if (x==10) r("si es10")
+			else re("no es 10")
+		})
+		p// esta p de mrda si la qito no pasa nah
+		.then((ra)=>{
+			console.log(ra)
+		})
+		.catch((er) =>{
+			console.log("error:", er)
+		});
+
+		//.then(console.log) 
+		//.catch(console.log)
+		*/
+
+		class persona{
+			constructor(nombre, apellido, edad){
+				this.nombre=nombre ;
+				this.apellido=apellido ;
+				this.edad=edad ;
+				this.clave = ""
+			}
+		}
+		const usuario = [new persona("jesus", "subero", 24), new persona("oriana", "alondra", 23), new	persona("hector", "amundaray", 28)] ;
+
+
+		async function nombre(nik) {console.log("en nombre")
+			const buscando_nik = usuario.find(x => x.nombre == nik)
+			if(buscando_nik) return(buscando_nik) ;
+			else throw new Error("esta muerto o no existe :v")
+
+		}
+		const hermanos = ["oriana", "jesus", "hector", "beto"] ;
+
+
+		for(const nombre of hermanos)
+			obtener(nombre) 
+
+		.then((res)=>{
+			console.log(res)
+		//	console.log(res) simepre se ejecuta esto a pesar q pasa x el catch pero si no hay promesas resolvida simplemente guarda undefined
+		})  
+		//.catch(console.log)
+
+		async function obtener(nik) { console.log("en obtener")
+			try{
+				const nom = await nombre(nik) ;
+				const clave =  await generar_clave(nom) ;
+				console.log("retornando clave")
+				return clave ;
+			}catch(error){
+				console.log(error)
+			}
+		}
+
+		async function generar_clave(persona) { console.log("en clave")
+			if(!(persona.edad <= 24)) throw new Error('hola '+ persona.nombre +" eres my viejo :C")
+			else{ 
+				persona.clave = "8gbasf646" ;
+				return('hola '+ persona.nombre + ' el sistema le genero una clave -> '+ persona.clave)
+			}
+		
+		} 
+	
+/*		// objeto Promise
+		function nombre(nik) {
+			const buscando_nik = usuario.find(x => x.nombre == nik)
+			const promesa= new Promise((resolve, rejects) =>{
+				if(buscando_nik) resolve(buscando_nik) ;
+				else rejects("esta muerto o no existe :v")
+			})
+		//	console.log(promesa)
+			return promesa ;
+		}
+		const hermanos = ["oriana", "jesus", "hector", "beto"]
+		for(const hermano of hermanos)
+			nombre(hermano) 
+		.then(generar_clave)
+		.then(console.log)
+		.catch(console.log)
+	/*	nombre("oriana")	
+		.then(generar_clave)
+		.then(console.log)
+		.catch(console.log)
+		nombre("jesus")
+		.then(generar_clave)
+		.then(console.log)
+		.catch(console.log)
+		nombre("hector")
+		.then(generar_clave)
+		.then(console.log)
+		.catch(console.log)
+		nombre("beto") // solo se ejecuta este x ser ultimo
+		.then(generar_clave)
+		.then(console.log)
+		.catch(console.log) 
+		*/
+
+		function generar_clave(persona) { 
+			return new Promise((resolve, rejects)=>{
+				if(!(persona.edad <= 24)) rejects('hola '+ persona.nombre +" eres my viejo :C")
+				else{ 
+					persona.clave = "8gbasf646" ;
+					resolve('hola '+ persona.nombre + ' el sistema le genero una clave -> '+ persona.clave)
+				}
+			})
+		}  
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+d		APi file
+.addEventlistener("change", (e)=>{ e.target.files[0]}
+	lector= new FileReader()
+FileReader.readAsText()
+FileReader.readAsDataURL()
+*FileReader.readAsBinaryString()
+*FileReader.readAsArrayBuffer()
+*FileReader.abort()
+.addEventListener("load", (e)=>{e.target.result })
+otros evento: progress, loadend.
+		
+		creacion de archivo
+navigator.weblotPersistentStorage.requestQuota(tamaño, funcion) 
+window.requestFileSystem (tipo, tamaño, successCallback, opt_errorCallback)
+ 
+.getFile(nombre_archivo, {create:true, exclusive: false}, mostrar, errores) create: si no existe lo crea y si extite no crea. exclusive si es true retorna error si se crea un archivo existente

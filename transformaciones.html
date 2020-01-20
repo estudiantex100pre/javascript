@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas scale(x,y)</title>
+</head>
+<style type="text/css">
+	canvas{
+		position: absolute;
+		bottom: 0;
+		top:0;
+		left: 0px;
+		right: 0px;
+		margin: auto ;
+		
+		
+		border:1px solid blue;
+	}
+</style>
+<body>
+	<canvas id="lienzo" width="600" height="600"></canvas>
+	<script type="text/javascript">
+		let elemento = document.getElementById('lienzo') ;
+		let canvas = elemento.getContext("2d") ;
+	
+		canvas.beginPath() ;
+		canvas.moveTo(130,50) ;
+		canvas.lineTo(230,50);
+		canvas.stroke() ;
+
+		canvas.font="bold 20px arial" ;
+	//	canvas.translate(-50,0) ;
+	//	canvas.rotate(0.3) ;
+	//	canvas.rotate(0.3) ;
+	//	canvas.rotate(0.3) ;
+
+		canvas.transform(1,0.3,.2,1,0,0)
+	//	canvas.scale(2,2)
+		canvas.fillText("VNZLA", 130,50) ;
+		canvas.setTransform(1,0.4,0,1,0,0) ;
+		canvas.fillText("VNZLA2", 130,50)
+		canvas.beginPath() ;
+		canvas.moveTo(0,0) ;
+		canvas.lineTo(230,0);
+		canvas.stroke() ;
+	</script>
+</body>
+</html>

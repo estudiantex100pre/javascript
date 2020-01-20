@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>arrastrar archivo</title>
+	<style type="text/css">
+		body{
+			display: flex;
+			flex-direction: column; 
+			justify-content: center ; 
+			align-items: center; 
+			height: 100vh ;
+			background-color: rgba(20,255,10,.3); 
+			
+		}
+		.drop-zone{
+			height: 500px; 
+			width: 500px ;
+			border: 2px dotted #fff;
+			background-color: #ccc ; 
+			color: red;
+			margin: 1em ;
+			display: flex;
+			justify-content: center ;
+		/*	align-items: center ; */
+		}
+
+
+
+		.drop-zone--active{
+			background-color: #111 ;
+		}
+		.hide {
+			display: none;
+		}
+		p{border: 1px solid blue; flex-grow: 2 ;}
+
+
+
+	</style>
+</head>
+<body>
+	<form class="form" method="post" enctype="multiport/form-data">
+		<div>
+			<input  class="hide" type="file" name="file" id="file">
+
+			<div id="drop-zone" class="drop-zone">
+				<i class="form fa-filr-upload"></i>
+				<p class="drop-zone__text">
+					drop file or click to upload file
+				</p>
+				
+			</div>
+			<input type="submit" id="upload-button" class="form__button" value="Upload">
+		</div>
+		
+	</form>
+	<script type="text/javascript">
+		const fileInput = document.getElementById('file'),
+		dropZone =	document.getElementById("drop-zone") ;
+
+	/*	dropZone.addEventListener("click" , () =>fileInput.click()) ; */
+		dropZone.addEventListener("dragover", (e)=>{
+			e.preventDefault() ;
+			dropZone.classList.add("drop-zone--active")
+		})
+
+		dropZone.addEventListener("dragleave", (e)=>{
+			e.preventDefault() ;
+			dropZone.classList.remove("drop-zone--active")
+		})
+
+		dropZone.addEventListener("drop", (e)=>{
+			e.preventDefault() ;
+			console.dir(fileInput)
+			fileInput.files = e.dataTransfer.files
+			console.log(e)
+			console.log(fileInput.files)
+		})
+
+		fileInput.addEventListener("change",(e)=>{
+			console.log("hola",e) ;
+		})
+	</script>
+</body>
+</html>

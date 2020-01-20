@@ -1,0 +1,62 @@
+			git
+https://git-scm.com/book/es/v2/Appendix-B%3A-Comandos-de-Git-Seguimiento-B%C3%A1sico
+
+git --version
+git config --global user.name "estudiantex100pre"
+git config --global user.email "j@gmail.com"
+git config -l
+direccion de una caperta en el sistema operativo donde queremos poner git x ejemplo. 
+cd /c/Users/ORIANA/Documents/programas/html/html y css
+git init. inicializar repositorio 
+
+git add . para agregar los archivos en git (q se encuentra en la direcion proporcionada anteriormente) 
+git status. te mostrará los diferentes estados de los archivos en tu directorio de trabajo y área de ensayo
+
+	stage
+git commit -m "Commit Inicial" 
+git checkout . ; restaura las modificaciones a los archivos como estaba desde el principio (inicio de git commit o git add?) 
+git log historia de modificaciones
+
+git add name  name es el nombre del archivo
+git commit -m "Se modifico name la palabra Coder"
+git add js/  /añade el directorio completo
+git add js/*.css solo añade los archivos q terminen en .css
+git reset name 
+
+git add -A otra forma de agregar todo los arcchivos
+git add --all (git commit -m "Se agrego contenido a la carpeta imagenes")  
+
+git help commit informacion de ayuda
+git config --global alias.atajo "comando" ejemplo: git config --global alias.s "status" (git s= git status) 
+
+git mv es un comando de conveniencia para mover un archivo y luego ejecutar git add en el nuevo archivo
+git rm  remover archivo
+git reset --soft alfanumerico retrocede a donde se indique
+git reset --hard devuelve todo los archivos eliminados (cuando reset--soft se devuelve a un punto pero sin los archivos eliminados...)
+git reflog historial de todo
+git reset --mixed alfanumerico lo mismo q soft a diferencia q mantiene los cambios en los archivos
+git reset --hard alfanumerico se devuelve al punto indicado (alfanumerico se consigue mediante reflog)
+
+.gitignore es un archivo q se crea en un editor de codigo para nombrar q rutas de archivos se ignoraran
+
+	ramas y uniones
+git branch nombre_rama 
+git log --oneline --decorate --all --graph 
+git checkout nombre_rama cambiar a otra rama
+git branch -d nombre_rama eliminar rama
+git checkout -b nombre_rama crea y sedirige a esa rama
+git merge nombre_rama unir rama
+
+	etiquetas
+git tag nombre  nombre es el nombre de la etiqueta
+git tag  da informacion del nombre de la etiqueta
+git tag -d nombre elimina etiqueta
+git tag -a nombre -m "mensaje"  agregar etiiqueta 
+git show nombre  informacion del tag
+git tag -a nombre alfanumerico -m "mensaje" agregar una etiqueta en  un punto anterior o antiguo
+
+	githud
+git remote add origin https://github.com/estudiantex100pre/demo.git 
+git clone link
+git push -u origin master
+git pull  trae los archivos creados desde la pagina githud fork trae repositorios de otros usarios al mio

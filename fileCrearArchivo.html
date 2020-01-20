@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>crear archivo</title>
+	<style type="text/css">
+		body{
+			display: flex;
+			justify-content: center;
+			align-items: center ;
+		}
+		section{
+			border: 1px solid blue;
+			margin-left: 2em ;
+			padding: 1em ;
+		}
+		
+	</style>
+</head>
+<body>
+	<section id="zonaformulario">
+		<form id="formulario">
+			<p>Nombre <input type="text" name="entrada" id="entrada" required></p>
+			<p><input type="button" name="button" id="boton" value="aceptar"> </p>
+		</form>
+	</section>
+	<section id="zonadatos">
+		no hay informacion
+	</section>
+	<script type="text/javascript">
+		const zonadatos= document.getElementById('zonadatos'),
+		boton= document.getElementById("boton") ;
+		boton.addEventListener("click", crear) ;
+		let espacio, ruta, lector ;
+
+		navigator.webkitPersistentStorage.requestQuota(5*1024*1024, acceso) ;
+		function acceso() { 
+			window.webkitRequestFileSystem(PERSISTENT,5*1024*1024, crearsis, errores) ;
+		}
+
+		function crearsis(sistema) {
+			console.log(sistema);
+			espacio=sistema.root ;
+			ruta="" ;
+			mostrar() ;
+		}
+
+		function errores(error) {
+			console.dir("error",error) ;
+		}
+
+		function crear() {
+			const nombre_archivo = document.getElementById("entrada").value ;
+			if(nombre_archivo != ""){
+				nombre_archivo= ruta+nombre_archivo ;
+				espacio.getFile(nombre_archivo, {create:true, exclusive: false}, mostrar, errores)
+			}
+		}
+		function mostrar(entrada) {
+			document.getElementById("entrada").value="" ;
+			zonadatos.innerHTML="" ;
+			espacio.getDirectory(ruta,null,leerdir,errores)
+		} 
+
+		function leerdir(dir) { console.log("dir",dir)
+			lector= dir.createReader() ;
+			leer() ;
+		}
+
+		function leer() {
+			lector.readEntries((archivos)=>{
+				if (archivos.length) {
+					listar(archivos)
+				}
+			}, errores) ;
+		}
+		function listar(archivos) {
+			for(var i=0; i<archivos.length; i++){
+				if(archivos[i].isFile)
+					zonadatos.innerHTML += archivos[i].name +"<br>"
+				else if(archivos[i].isDirectory)
+						zonadatos.innerHTML+="<span class='directorio'>" + archivos[i].name +"</span><br>"
+			}
+		}
+		
+
+
+		/*const zonadatos= document.getElementById('zonadatos'),
+		boton= document.getElementById("boton") ;
+		boton.addEventListener("click", crear) ;
+
+		navigator.webkitPersistentStorage.requestQuota(5*1024*1024, acceso) ;
+		function acceso() { 
+			window.webkitRequestFileSystem(PERSISTENT,5*1024*1024, crearsis, errores) ;
+		}
+
+		function crearsis(sistema) {
+			console.log(sistema);
+			espacio=sistema.root ;
+		}
+
+		function errores(error) {
+			console.log("error", error) ;
+		}
+
+		function crear() {
+			const nombre_archivo = document.getElementById("entrada").value ;
+			if(nombre_archivo != ""){
+				espacio.getFile(nombre_archivo, {create:true, exclusive: false}, mostrar, errores)
+			}
+		}
+		function mostrar(entrada) {
+			zonadatos.value ="" ;
+			zonadatos.innerHTML="exito en la creacion de espacio y archivo <br>" ;
+			zonadatos.innerHTML+= "Nombre: "+ entrada.name + "<br>";
+			zonadatos.innerHTML+="Ruta: " + entrada.fullPath + "<br>" ;
+		} crear archivo*/
+	</script>
+</body>
+</html>

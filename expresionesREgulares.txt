@@ -1,0 +1,31 @@
+		expresiones regulares
+	condiciones
+sustitucion: "." representa cualquier caracter
+
+listado de caracteres validos: [aeiou] busca cada a,e,i,o,u. tantas letras q queremos q busque
+
+rango: [a-z]
+
+mezcla entre rangos y lista: [0-5ou] busca del 0 a5 y los "o" y "u"
+
+cadenas completas: (jesus|subero)
+	delimitadores: (2 de muchos)
+^ antes no puede ver nada. 
+$ despues no puever nada
+	
+	cantidad
+{n} se tiene q repetir n veces
+{n,m} se tiene querepetir entre n y m veces ejm de a{1,3} agarra todo los a q se repitan 1 o 2 o 3 veces
+{n,} se tiene q repetir como minimo n y si hay mas pues las incluye
+
+asterisco: lo que esta ante del * puede estar, puede no estar y se puede repetir. .*@.*\..*
+interrogacion: lo que esta antes de ? puede no estar pero si esta solo puede aparecer una vez
+operador +: lo que esta antes del + tiene que estar unavez como minimo
+	caracteres
+\s: coincide con un caractr de espacio ^[a-zA-Z]+\s[a-zA-Z]+$ condicion para dos nombres
+\S: coincide con todos menos caracteres de espacio 
+\d: coinicide con un caracter de numero. ^\d{5}
+\D: coincide con cualquier caracter no numerico [0-9]
+\w: coincide con cualquier numero alfanumerico "_"
+\W: coincide con cualquier caracter q no sea 
+[a-zA-Z0-9]y "_"

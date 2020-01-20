@@ -1,0 +1,37 @@
+			wedstorage
+
+sessionStorage o localStorage "5k"
+
+.setItem('key', 'value')  ||sessionStorage[key]="value"
+
+.getItem('key') || sessionStorage[hey]
+
+sessionStorage.key(i) no se sabe como se ordena
+
+sessionStorage.clear() elimna todo lo qse guarda
+
+sessionStorage.removeItem("key") elimina 1 elemento
+
+			indexdedDB
+indexdDB.open("name") nombre de la base de datos
+.onsuccess =(e)=>{e.target.result}result base de datos
+.onupgradeneeded  ejecuta solo una vez
+	db=e.target.result 
+db.createObjectStore("gente", {keyPath:"clave"})
+transaccion=db.transaction(["gente"], "readwrite")
+almacen=transaccion.objectStore("gente") 
+agregar=almacen.add(llave)
+llave -> {clave: "key",camp1: "--", camp2: "--",...}
+key -> solo la (clave)
+transaccion=db.transaction(["gente"], "readonly")
+almacen= transaccion.objectStore("gente")
+cursor = almacen.openCursor()
+cursor.addEventListener("success", function) 
+cursor.continue() ;
+
+obtener = objectStore.get(key) la llave q se obtendra
+obtener.result.campos  campos son los atributos de la llave guardada en la base de datos
+
+".openCursor y .get tienen el mismo objetivo. cursor para leer base de datos y get para obtener 1 solo dato (llave)"
+
+actualizarLlave= objectStore.put(llave)  si el value key no existe la pone, si existe modifica todo los campos ojo el campo keyPath nose cambia x q es la ruta de clave y es obligatorio si se modifica se crea otra (x q realmente no existe).

@@ -1,0 +1,64 @@
+			canvas 
+canvas.height canvas.widht
+
+<canvas class="" id="" width="" heigth="">
+.getContext("2d or 3d") 
+.fillRect("x,y,width,heigth") 
+.strokeRect("x,y,width,heigth")
+.clearRect("x,y,width,heigth")
+.strokeStyle = "color"
+.fillStyle =color"
+.globalAlpha="0a1"
+
+			degradados
+.createLinearGradient(x1,y1,x2,y2) 
+.addColorStop(n, "color") 
+.createRadialGradient((x1,y1,r1,x2,y2,r1)
+
+			trazados
+.beginPath()
+.moveTo(x,y)
+.lineTo(x,y)
+.closePath() .clip()
+.stroke(); .fill() 
+			arcos
+.arc(x,y,radius,startAngle,endAngle, anticlockwise);
+.quadraticCurveTo(cx1,cy1,x1,y1)
+.bezierCurveTo(cx1,cy1,cx2,cy2,x1,y2)
+			Lineas 
+.lineWidth= n :grosor de linea
+.lineCap = |Butt|Round|Square| terminacion de lineas
+.lineJoin= |Round|Bevel|Miter| conexions entre lineas
+.miterLimit=
+			Texto
+.Font= mismo valores en css
+.textAlign= Star End Left Right Center 
+textBaseLine= Top Hanging Middle Alphabetix ideographix bottom
+	metodos para dibujo
+.strokeText(text,x,y)
+.fillText(texto,x,y)
+.measureText("texto")
+	propiedades para sombras
+.shadowColor= 
+.shadowOffsetx= .shadowOffsetY= 
+.shadowBlur=
+			Transformaciones
+.translate(x,y) 
+.rotate(radianes) 
+.scale(x,y)
+.transform(sx,r,sesgar,sy,tx,ty)
+.setTransform(sx,r,sesgar,sy,tx,ty) reinicia la caracteristica de la matriz
+.save() graba el estado del lienzo
+restore() restaura el estado grabado del lienzo
+			
+			superposicion y imagenes
+			
+.globalCompositeOperation=""
+new Image(); imagenes.src=""
+.drawImage(imagen,x,y)
+.drawImage(imagen,x,y,ancho,alto)
+.drawImage(imagen,x,y,ancho1,alto1,x2,y2,ancho2,alto2)
+	imagenes a datos
+getlmageData(x,y,ancho,alto)
+putlmageData(datodelimagen,x,y)
+createImageData(ancho,alto)

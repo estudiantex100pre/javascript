@@ -1,0 +1,27 @@
+			drag y drop
+	eventos
+dragstart drag dragenter dragleave dragover 
+drop dragend event.preventDefault() 
+	dataTransfer
+event.dataTransfer .setData(format, data), .gettData(format)
+https://html.spec.whatwg.org/
+		geolocalizacion
+navigator.geolocation
+.getCurrentPosition(ubicacnion,errores,configuracion)
+.watchPosition(ubicacion,errores,configuracion)
+.clearWatch(id)
+	objecto retornado "position"
+position.coords.(latitude, longuitude, accuracy, altitude, altitudeAccuracy, heading, speed)
+position.timestamp "porpiedad que indica el momento exacto en el que se determino la posicion"
+
+	objecto retornado "error"
+error.code= 1 or 2 or 3
+1 permiso denegado
+2 ubicacion no disponible
+3 tiempo para detectar ubicacion excedido
+error.message mensaje segun el error generado
+
+	configuracion 
+enableHightAccuracy: true o false ; utilizar sistema GPS para localizaacion. por defecto es false +
+timeout tiempo para llevar a cabo la localizacion
+maximumAge determina si ha de ir a la cache a buscar ultima localizacion

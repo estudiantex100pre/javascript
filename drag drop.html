@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>dragstart</title>
+	<style type="text/css">
+		section{
+			border:1px solid blue;
+			height: 400px;
+		}
+		article {	width: 500px ; height: 500px ; border:1px dotted orange;}
+	[draggable] {
+user-select: contain;
+}
+.column:hover {
+border: 2px dotted #666666;
+background-color: #ccc;
+border-radius: 10px;
+box-shadow: inset 0 0 3px #000;
+cursor: move;
+}
+	</style>
+</head>
+<body>
+	<section>
+		<img src="vene.PNG">
+	</section>
+	<article>lkfghlñsfkjg</article>
+	<div id="columns">
+<div class="column" draggable="false"><header>A</header></div>
+<div class="column" draggable="true"><header>B</header></div>
+<div class="column" draggable="true"><header>C</header></div>
+</div>
+	<script type="text/javascript">
+		var elem_origen = document.querySelector("section") ;
+		var elem_destino= document.querySelector("article") ;
+		elem_origen.addEventListener("dragstart", comenzamos_arrastrar) ;
+
+		elem_destino.addEventListener("dragenter", (e)=>{
+			e.preventDefault() ;
+			elem_destino.style.background="rgba(8,252,25,.5)";
+		})
+		elem_destino.addEventListener("dragover", (e)=>{
+			e.preventDefault() ; //este el unico q le veo funcion
+		})
+		elem_destino.addEventListener("drop",soltado) ;
+
+			elem_destino.addEventListener("dragstart", (e)=>{
+			e.preventDefault() ; //este le veo su funcion
+			console.log("destino0")
+
+			}) ;
+
+		elem_origen.addEventListener("dragend",terminado) 
+		function terminado(e) {
+			let elemento=e.target ;
+			console.log(elemento);
+			elemento.style.visibility="hidden"
+		}
+
+		elem_destino.addEventListener("dragleave",()=>{
+			elem_destino.style.background="#665" ;
+		})
+
+		function comenzamos_arrastrar(e) {
+			let codigo = "<img src='" + elem_origen.firstElementChild.getAttribute("src")+ "'>" ;
+			e.dataTransfer.setData("Text",codigo) ;
+			console.log(e,"hola", e.dataTransfer) ; 
+			 e.effectAllowed = 'mover' ;
+		}
+
+		function soltado(e) {
+			e.preventDefault() ;
+		 e.effectAllowed = 'mover' ;
+			this.innerHTML=e.dataTransfer.getData("Text") ;
+			elem_origen.removeChild(elem_origen.firstElementChild) ;
+			this.style.background="#fff" ;
+		//	elem_destino.prepend(elem_origen.firstElementChild) ;
+		console.log(e.dataTransfer.types)
+		}
+
+	</script>
+</body>
+</html>

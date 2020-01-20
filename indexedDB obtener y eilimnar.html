@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>get y delete</title>
+	<style type="text/css">
+		#form{
+			margin: auto auto 2em;
+			display: table ;
+			border:1px solid blue;
+		}
+		#tasks {
+			max-width: 320px;
+			margin: auto ;
+			border: 1px solid red ;
+			display: table ;
+		}
+		#tasks p:nth-of-type(2n){
+			width: 10% ;
+			float: left;
+		}
+		#tasks p:nth-of-type(2n+1){
+			width: 45% ;
+			float: left;
+			padding-left: 4px;
+		}
+		#tasks button{
+			width: 16% ;
+			float:left;
+			margin-right: 1em ; 
+			line-height: 1em;
+			margin-top: 1em;
+			padding: .3em 0em;
+		}
+	</style>
+</head>
+<body>
+	<form id="form">
+		<label for="task">task </label>
+		<input type="text" name="task">
+		<select name="priority">
+			<option value="low">low</option>
+			<option value="normal">normal</option>
+			<option value="high">high</option>
+		</select>
+		<button class="button" name="button" data-action="add">Add Task</button>
+	</form>
+	<div id="tasks"></div>
+	<script type="text/javascript">
+		let db ; 
+		const form = document.getElementById('form'),
+		tasks = document.getElementById("tasks") ;
+		const request = indexedDB.open("tasklist",1) ;
+		request.onsuccess= ()=>{
+			db=request.result ; //e.targe.result
+			console.log("OPEN") ;
+			readData() 
+		}
+		request.onupgradeneeded = ()=>{
+			console.log("CREATE") ;
+			db = request.result ;
+			const objectstore =db.createObjectStore("tasks", {keyPath: "taskTitle" });
+			//const objectstore2 =db.createObjectStore("tasks2")
+		}
+		request.onerror = (error) =>{
+			console.log("error",error)
+		}
+
+		function addData(data) {
+			const transaction = db.transaction(["tasks"], "readwrite") ;
+			const objectStore= transaction.objectStore("tasks") ;
+			const request = objectStore.add(data) ;
+			request.onsuccess = () => {
+				readData() ;
+			}
+		}
+		function readData() {
+			const transaction = db.transaction(["tasks"], "readonly") ;
+			const objectStore= transaction.objectStore("tasks") ;
+			const request = objectStore.openCursor() ;
+			const fragment = document.createDocumentFragment() ;
+
+			request.onsuccess = (e)=>{
+				const cursor = e.target.result ;
+				if(cursor){
+					const taskTitle = document.createElement("p") ;
+					taskTitle.textContent = cursor.value.taskTitle ;
+					fragment.appendChild(taskTitle) ;
+					
+					const taskPriority = document.createElement("p") ;
+					taskPriority.textContent = cursor.value.taskPriority ;
+					fragment.appendChild(taskPriority) ;
+					
+					const taskUpdate = document.createElement("button") ;
+					taskUpdate.dataset.type = "update" ;
+					taskUpdate.dataset.key = cursor.key ;
+					taskUpdate.textContent = "udapte" ;
+					fragment.appendChild(taskUpdate);
+
+					const taskUpdelete = document.createElement("button") ;
+					taskUpdelete.textContent = "delete" ;
+					taskUpdelete.dataset.type = "delete" ;
+					taskUpdelete.dataset.key = cursor.key ;
+					fragment.appendChild(taskUpdelete)
+
+					cursor.continue() ;
+
+				}else { tasks.textContent="" ;
+						tasks.appendChild(fragment) ;
+						form.reset() ;
+					}	
+			}
+		}
+
+		function getData(key) {
+			const transaction = db.transaction(["tasks"], "readonly") ;
+			const objectStore= transaction.objectStore("tasks") ;
+			const request = objectStore.get(key) ;
+	
+			request.onsuccess = (e)=>{ 		
+				form.task.value = request.result.taskTitle ;
+				form.priority.value = request.result.taskPriority ;
+				form.button.dataset.action ="update" ;
+				form.button.textContent = "update task"
+				}
+		}
+
+		function updateData(data){
+			const transaction = db.transaction(["tasks"], "readwrite") ;
+			const objectStore= transaction.objectStore("tasks") ;
+			const request = objectStore.put(data) ;
+				request.onsuccess = ()=>{
+					form.button.dataset.action = "add" ;
+					form.button.textContent = "add task" ;
+					readData()
+				}		
+		}
+
+		function deleteData(key) {
+			const transaction = db.transaction(["tasks"], "readwrite") ;
+			const objectStore= transaction.objectStore("tasks") ;
+			const request = objectStore.delete(key) ;
+			request.onsuccess = () =>{
+				readData() ;
+			}
+		}
+		
+		tasks.addEventListener("click", (e)=>{ console.log(e.target)
+			if(e.target.dataset.type == "update")
+				getData(e.target.dataset.key) ;
+			else if(e.target.dataset.type == "delete")
+					deleteData(e.target.dataset.key) ;	 
+		})
+
+		form.addEventListener("submit",(e)=>{
+			e.preventDefault() ;
+			const data = {	taskTitle: e.target.task.value,	taskPriority: e.target.priority.value}
+
+			if(e.target.button.dataset.action == "add")
+				addData(data) ;
+			else if(e.target.button.dataset.action == "update")
+				updateData(data) ;
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>palabras con animacion</title>
+	<style type="text/css">
+		canvas{	border:1px solid orange;}
+	</style>
+</head>
+<body>
+	<canvas id="lienzo" height="500" width="1000"></canvas>
+	<script type="text/javascript">
+		let elemento = document.getElementById('lienzo');
+		let canvas	= elemento.getContext("2d") ;
+		
+		canvas.fillStyle = "blue" ;
+		canvas.font= "40px arial" ;
+		var parrafo1 = "gloria al bravo el pueblo" ;
+		canvas.fillText(parrafo1,30,50) ;
+/*		var parrafo1= ["g","l","o","r","i","a"];
+		canvas.translate(0,30);
+		let aux="" ; 
+		for(var i=0 ; i<parrafo1.length  ; i++ ){
+			for(var j =0 ; j<parrafo1.length ; j++)
+				aux += parrafo1[j] ; 
+
+			console.log(aux) ;
+			canvas.fillText(aux,20,i*80) ;
+
+			console.log(parrafo1[i]) ;
+			parrafo1[i] = ' ' ;
+			aux="" ;	
+		}*/
+
+		var pr=0, pr2=0 ;
+		setInterval(transparencia,7)
+		setInterval(borrar,8) ;
+		function transparencia(argument) {
+			canvas.strokeStyle="rgba(255,255,255)" ;
+			canvas.beginPath() ;
+			canvas.moveTo(1*pr2,10) ;
+			canvas.lineTo(1*pr2,70);
+			canvas.stroke() ;
+			pr2++ ;
+		}
+		function borrar(argument) {
+			canvas.strokeStyle="rgba(255,255,255)" ;
+			canvas.beginPath() ;
+			for(var i=0 ; i<2; i++){
+			canvas.moveTo(1*pr,10) ;
+			canvas.lineTo(1*pr,70);
+			canvas.stroke() ;}
+			//canvas.lineWidth=2 ;
+			pr++ ;
+
+		}
+
+
+	</script>
+
+</body>
+</html>

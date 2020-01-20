@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		:root {
+			--bar-width:0 ;
+		}
+		#progreso{
+			height: 16px ; 
+			width: 100px  ;
+			border: 1px solid red;
+			position: relative;
+			margin: 10px ;
+		}
+		#progreso:before {
+			content: "" ;
+			display: block;
+			height: 16px ;
+			background-color: blue ;
+			width: var(--bar-width); 
+			max-width: 100px ;
+			position: absolute;
+			top: 0 ;
+			left: 0 ;
+		}
+	</style>
+</head>
+<body>
+	<input type="file" name="file" id="file">
+	<div id="progreso"></div>
+	<script type="text/javascript">
+		const inputfile = document.getElementById('file'),
+		progreso = document.getElementById("progreso") ;
+		const root = document.documentElement ; 
+		var aver ;
+		inputfile.addEventListener("change", (e)=>{ 
+			var file= e.target.files[0] ;
+			console.log("archivo", file.name)
+			if(file){
+				const filereader = new FileReader() ;
+				filereader.readAsDataURL(file) ;
+				filereader.addEventListener("progress", (e)=>{ console.log("progre")
+					aver = e.target.result ;
+					var valor = Number.parseInt(e.loaded * 100 / e.total) ;
+					root.style.setProperty("--bar-width", valor+ "%") ;
+				})
+				
+			}
+		})
+
+		inputfile.addEventListener("loadend", (e)=>{
+			root.style.setProperty("--bar-width", 100+ "%") ;
+			console.log("hola")
+		}) 
+	</script>
+</body>
+</html>

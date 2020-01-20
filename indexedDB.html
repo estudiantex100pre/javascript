@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>indexedBD</title>
+	<style type="text/css">
+		#cajaformulario	{
+			height: 300px; 
+			width: 350px ;
+			border: 1px solid blue ;
+			
+			margin-left: 3em ;
+			margin-bottom: 1em ; 
+		}
+		#zonadatos{
+			width: 350px ;
+			min-height: 30px ;
+			border:1px solid #ccc;
+			margin-left: 6em ;
+		}
+	</style>
+</head>
+<body>
+	<section id="cajaformulario">
+		<form name="formulario">
+			<p>clave: <input type="text" name="clave" id="clave"> </p>
+			<p>titulo: <input type="text" name="texto" id="texto"> </p>
+			<p>año: <input type="text" name="fecha" id="fecha"> </p>
+			<input type="button" name="grabar" id="grabar" value="grabar">
+		</form>
+	</section>
+	<section id="zonadatos">
+		<p>futuro datos</p>
+	</section>
+	<script type="text/javascript">
+		let clave = document.getElementById('zonadatos'),
+		button = document.getElementById("grabar") ;
+		button.addEventListener("click" , agregarobjeto) ;
+		let solicitud =indexedDB.open("mibase1") ;
+		console.log(solicitud) ;//console.log(indexedDB) 
+		let db ;
+		solicitud.onsuccess = activar ;
+		function activar(e) {console.log(e) ;
+			db=e.target.result ; //solicitud.result
+		}
+			solicitud.onupgradeneeded = (e) =>{
+			console.log(e ,"alv") ;
+			db=e.target.result ;
+			db.createObjectStore("gente", {keyPath:"clave"}) ;
+		}
+
+		function agregarobjeto() {console.log(db) ;
+			let clave = document.getElementById("clave").value,
+			titulo = document.getElementById("texto").value,
+			fecha = document.getElementById("fecha").value;
+			let transaccion = db.transaction(["gente"], "readwrite") ;
+			let almacen = transaccion.objectStore("gente") ;
+			var agregar= almacen.add({aver:".l.", clave: clave, titulo: titulo, fecha: fecha});
+			agregar.addEventListener("success", mostrar) ;
+			document.getElementById("clave").value="";
+			document.getElementById("texto").value="";
+			document.getElementById("fecha").value="";
+		}
+		function mostrar() {
+			zonadatos.innerHTML = "" ;
+			let transaccion= db.transaction(["gente"], "readonly");
+			let almacen= transaccion.objectStore("gente");
+			let cursor = almacen.openCursor() ; 
+			console.log(almacen) ;
+			cursor.addEventListener("success", (e)=> {
+				var cursor = e.target.result ; 
+				console.log(cursor) ; 
+				if(cursor){
+					zonadatos.innerHTML += "<div>" + cursor.value.clave + " - " + cursor.value.titulo + " - " +cursor.value.fecha + "</div>";
+					cursor.continue() ;
+				}
+		})
+			/*	zonadatos.innerHTML += "<div>" + "clave: " +cursor.value.clave + "<br>titulo: " + cursor.value.titulo + "<br>fecha: " + cursor.value.fecha + "</div>";	 */	
+		}
+
+
+		</script>
+
+</body>
+</html>

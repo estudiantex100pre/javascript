@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sessionStorage</title>
+	<style type="text/css">
+		section, article{
+			height: 300px ; 
+			border:1px solid blue;
+			display: table ;
+		}
+		p{	padding: .5em ;}
+		.poner{	visibility: hidden;}
+		button{	margin: auto ;}
+	</style>
+</head>
+<body>
+	<nav onclick="aver('hola')">aqui</nav>
+	<section>
+		<p>nombre:<input type="text" name="" value="nombre"></p>
+		<p>clave:<input type="text" name="" value="clave"></p>
+		<button>agregar</button>
+	</section>
+	<article>destino</article>
+	<button class="poner">quitar elementos</button>
+	<script type="text/javascript">
+		function aver(xd) {
+			alert(xd)
+		}
+		let section = document.querySelector("section") ;
+		let article = section.nextElementSibling ; 
+		let quitar = article.nextElementSibling ;
+		section.lastElementChild.addEventListener("click", agregar) ;
+		let name ;
+		function agregar() {
+			name = section.children[0].firstElementChild.value ;
+			let pass = section.children[1].firstElementChild.value ;
+		//	console.log(name, pass) ;
+			localStorage.setItem(name,pass) ;
+		//	console.log(sessionStorage.length)	
+			//sessionStorage[name]=pass;
+			article.textContent = null ;
+			mostrar_lista() ;
+			quitar.className="" ; 
+		}
+		function mostrar_lista() {
+			for(var i=0 ; i<localStorage.length ; i++){
+				var clave = localStorage.key(i) ;
+				console.log(clave,localStorage.key(i))
+				var texto = document.createTextNode(clave+": "+localStorage.getItem(clave));
+				console.log(clave,texto) ; 
+				let etiqueta = document.createElement("p") ;
+				etiqueta.innerHTML = "<button onClick=\"quitar_elemento(\'"+ clave+ "\')\">" + "eliminar item"+ "</button>"; 
+				etiqueta.append(texto) ;
+				article.append(etiqueta) ; 
+			}
+		}
+
+		quitar.addEventListener("click", ()=>{
+			console.log("hola") ;
+			article.innerHTML="" ;
+			localStorage.clear() ;
+		})
+		function quitar_elemento(e) { 
+			localStorage.removeItem(e) ;
+			article.innerHTML="" ;
+			mostrar_lista() ;
+		}
+	</script>
+</body>
+</html>

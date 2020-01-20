@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ACCESSKEY</title>
+	<style type="text/css">
+		ol{
+			height: 300px;
+			overflow: scroll;		
+			border-top: 1px solid silver ; border-left: 1px solid silver ;
+			list-style-position: inside;
+			list-style-type: none ;
+		}
+	</style>
+
+	<script src="modernizr-custom.js"></script>
+</head>
+<body>
+	<input type="search" name="q" accesskey="s">
+	<a href="https://www.youtube.com/watch?v=xyWt0RFYvvw" accesskey="q">video</a>
+	<ol contenteditable="true">
+		<li></li>	
+	</ol>
+	<label draggable="true">Example Label</label> fad fa 
+	<form>
+	correo<input type="email" name="emails" multiple="multiple" placeholder="con @ mmgvo"  />  <br>
+	<input type="url" name="url" required=""><br>
+	fecha: <input type="date" name="date" min="2010-01-01" max="2010-12-31"><br>
+	hora: <input type="time" name="time" min="06:00" max="09:01" ><br>
+	fecha y hora: <input type="datetime-local" name="datetime"><br>
+	mes: <input type="month" name="month"><br>
+	semana: <input type="week" name=""><br>
+	numero: <input type="number" name="" autofocus="true" step="5"><br>
+	rango: <input type="range" name="" ><br> <!--max min step-->
+	color: <input type="color" name="" ><br>
+	text con lista: <input id="form-person-title" type="text" list="mylist" >
+	<datalist id="mylist" > <!--id = list-->
+	<option label="Mr" value="Mrr">
+	<option label="Ms" value="Mss">
+	<option label="Prof" value="Mad Professor">
+	</datalist> <br>
+	archivo: <input type="file" multiple="multiple"><br>
+	texto: <input type="text" name="" autocomplete="true"> nose <br>
+	rango: <input type="range" mix="0" max="100" step="5"><br>
+	atributo<input type="text" pattern="[0-9][A-Z]{3}" name="part" placeholder="numero de pieza" 
+	title="Un numero de pieza es un digito seguido de tres letras mayusculas. "> 
+	<!-- <form id="foo">
+	<input type="text">
+	...
+	</form>
+	<textarea form="foo"></textarea>-->
+
+	progress:<progress value="10" max="20">1</progress>
+	<p>Your score is:
+<meter value="46" min="0" max="50"
+low="40" high="45" optimum="46">A+</meter>
+</p>
+	<input type="submit" >
+	</form>
+		<script type="text/javascript">
+		if(Modernizr.flash == true )
+			console.log("con flash")
+		else
+			console.log("sin flash")
+	</script>
+</body>
+</html>

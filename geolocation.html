@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>geolocation</title>
+	<style type="text/css">
+		section{	height: 100px;}
+	</style>
+</head>
+<body>
+	<section>
+		<button id="x">ubicacion</button>
+	</section>
+	<script type="text/javascript">
+		var button = document.getElementById('x');
+		button.addEventListener("click", ()=>{ console.log("click")
+			var xd=true ;
+			var parametros ={enableHighAccuaracy: xd, timeout:300, maximumAge:6000} 
+			navigator.geolocation.getCurrentPosition(muestra_posicion,gestion_errores,parametros); 
+		}) 
+		function muestra_posicion(posicion) {
+			console.log("posicion",posicion)
+			let miubicacion = "<br>" ;
+			miubicacion += "Laguitud: " + posicion.coords.longitude +"<br>"+ "latitud: " + posicion.coords.latitude+"<br>" + "exactitud: " +posicion.coords.accuracy ;
+			let contenido =document.createTextNode(miubicacion) ;
+			button.parentElement.appendChild(contenido);
+		}
+		function gestion_errores(error) {
+			console.log("error",error) ;
+			console.log(error.code, error.message) ;
+		}
+/*		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function (position) {
+			var coords = position.coords;
+			showMap(coords.latitude, coords.longitude, coords.accuracy);
+});
+}*/
+	</script>
+</body>
+</html>

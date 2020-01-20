@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>observe</title>
+	<style type="text/css">
+		body {
+		  background-color: #2a2a2a;
+		  text-align: center;
+		  font-family: sans-serif;
+		  margin: 0;
+		  overflow: auto;
+		}
+
+		.box {
+		  background-color: rgb(81, 0, 128);
+		  color: #fff;
+		  font-size: 2rem;
+		  margin-bottom: 100vh;
+		  padding: 1.5rem 0;
+		  position: relative;
+		  border-top:2px solid blue;
+		  border-bottom: 2px solid red ;
+		}
+
+		/* .box::after {
+		  content: "50%";
+		  position: absolute;
+		  top: 0;
+		  display: block;
+		  width: 100%;
+		  background-color: peru;
+		  height: 50%;
+		  font-size: 1rem;
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		} */
+		p{ border:1px solid orange; }
+		img {
+		  max-width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="box1" class="box"><p>box-1</p>
+		<p>1</p>
+		<p>2</p>
+		<p>3</p>
+	</div>
+    <div id="box2" class="box"><p>box-2</p>
+    	<p>1</p>
+		<p>2</p>
+		<p>3</p>
+    </div>
+    <div id="box3" class="box">box-3</div>
+    <div id="box4" class="box">box-4</div>
+	<script type="text/javascript">
+		const boxes = document.querySelectorAll('.box')
+
+		const callback = (entries) => {
+			console.log("segundo",entries,"la altura es: ", entries[0].intersectionRect.height)
+		   entries.forEach(entry => {
+		        if (entry.isIntersecting) {
+		            console.log(entry.target.id, 'is intersecting')
+		        } 
+		    })
+		}
+
+		const options = {
+		    // root:
+		    // rootMargin: '-200px'
+		    threshold: 0.25
+		}
+
+	//	const observer = new IntersectionObserver(callback, options)
+	//	boxes.forEach(element => observer.observe(element)) 
+
+		const observer = new IntersectionObserver(callback) ;
+		console.log(observer)
+		boxes.forEach(element =>{ console.log("primero boxes")
+			return observer.observe(element)})
+			</script>
+</body>
+</html>

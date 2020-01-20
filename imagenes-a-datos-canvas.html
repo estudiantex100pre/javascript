@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>imagenes a datos</title>
+	<script type="text/javascript">
+		function comenzar() {
+			var elemento = document.getElementById('lienzo') ;
+			lienzo = elemento.getContext("2d") ;
+			var imagen= new Image() ;
+			imagen.src = "imagenes/fondo.JPG" ;
+			imagen.addEventListener("load",manipularimagen,false)
+		}
+		function manipularimagen(e){ console.log(e) ;
+			imagen = e.target ; //this
+			lienzo.drawImage(imagen,0,0) ;
+/*			var info_imagen=lienzo.getImageData(0,0,145,145) ; //mamameelwueba :v
+			var posicion ;
+			for(var x=0 ; x<145;x++)
+				for(var y=0 ; y<145 ; y++){
+					posicion =(info_imagen.width*4*y) +(x*4) ;
+					info_imagen.data[posicion]=255-info_imagen.data[posicion] ;
+					info_imagen.data[posicion+1]=255-info_imagen.data[posicion+1] ;
+					info_imagen.data[posicion+2]=255-info_imagen.data[posicion+2] ;
+				}
+			lienzo.putImageData(info_imagen,0,0) ;	*/
+		}
+
+		window.addEventListener("load",comenzar,false) ;
+
+	</script>
+	<style type="text/css">
+	/*	canvas{
+		position: absolute;
+		bottom: 0;
+		top:0;
+		left: 0px;
+		right: 0px;
+		margin: auto ;	
+	}*/
+	</style>
+</head>
+<body>
+	<canvas id="lienzo"  width="1200" height="500"></canvas>
+</body>
+</html>

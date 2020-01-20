@@ -1,0 +1,25 @@
+		API's Visibility Change
+addEventListener("visibilitychange", fun)
+document.visibilityState pestaña visible o hidden
+
+		 API's - Online / Offline 
+addEventListener("online", fun)
+addEventListener("offline", fun)
+		
+		API's - Notifications
+Notification.requestPermission() devuelve una promesa
+Notification.permission granted, denied, default
+new Notification("hellow world", options)
+
+		API's - Intersection Observer
+new IntersectionObserver(callback,options) callback devuelve un objeto entries y options es opcional
+.observe(element) a los elemento q se tendra en cuenta sus intersecciones 
+entry.isIntersecting la interseccion es true cuando es para entrar al elemento
+
+ojo: "la parte superior de la pagina intersecta la parte inferior del elemento. y la parte inferior de la pagina intersecta la parte superior del elemento 
+
+		API's - Match Media 
+const mql = matchMedia('(min-width:400px) and (orientation: landscape)')
+addEventListener('resize', () => applyMatchMedia(mql))
+con este evento la funcion applyMatchMedia tiene un parametro mql en el q podemos hace una condicion q ejecute codigo cuando 
+mql.matches es true para agregar codigo cuando el parametro mql cumpla con la media query seleccionada

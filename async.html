@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Async/await</title>
+</head>
+<body>
+	<h1>Async / await</h1>
+	<script type="text/javascript">
+
+	addEventListener("offline",(e)=>{
+      console.log("hola",e)
+    })
+    addEventListener("online",(e)=>{
+      console.log("hola",e)
+    })
+		async function getname(){
+			return new Promise((resolve,reject)=>{
+				setTimeout(()=>{
+					resolve("hola mundo")
+				},5000)
+			})
+		}
+	/*	const getname = async () =>{
+			return new Promise((resolve,reject)=>{
+				setTimeout(()=>{
+					resolve("hola mundo")
+				},1500)
+			})
+		} */
+	//	getname().then(console.log)
+		async function saludar() {
+			const name = await getname() ;
+			return "jesus " + name
+		}	
+		//console.log(saludar())
+		saludar().then(console.log) 
+	</script>
+</body>
+
+</html>

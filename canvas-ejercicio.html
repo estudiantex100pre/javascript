@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas-ejercicio-7</title>
+</head>
+<body>
+	<canvas id="lienzo" height="300" width="200"></canvas>
+	<script type="text/javascript">
+		let ele = document.querySelector("canvas") ;
+		let canvas = ele.getContext("2d") ;
+		canvas.fillStyle = "#000" ;
+		canvas.fillRect(0,0,ele.width,ele.height) ;
+
+		canvas.beginPath();
+		canvas.fillStyle= "#fff" ;
+		canvas.arc(100,50,30,0,Math.PI*2,false) ; 
+		canvas.fill() ;
+
+		canvas.beginPath();
+		canvas.lineWidth=3;
+		canvas.lineCap= "round"
+		canvas.strokeStyle="#c00" ;
+		canvas.arc(100,50,20,0,Math.PI,false) ;
+		canvas.stroke() ;
+	/*	canvas.beginPath() ;
+		canvas.moveTo(80,50) ;
+		canvas.lineWidth=3;
+		canvas.lineCap= "round" ;
+		canvas.strokeStyle="#c00" ;
+		canvas.quadraticCurveTo(100,70,120,50) ;
+		canvas.stroke() ; */
+
+		canvas.lineWidth=1;
+		canvas.fillStyle= "#c00" ;
+		canvas.beginPath();
+		canvas.arc(90,45,3,0,Math.PI*2,false);
+		canvas.fill() ;
+		canvas.beginPath();
+		canvas.arc(110,45,3,0,Math.PI*2,false) ;
+		canvas.closePath()
+		canvas.stroke() ;
+
+		canvas.lineWidth=4;
+		canvas.strokeStyle="#fff" ; //canvas.lineCap= "round" ya esta arriba
+		canvas.beginPath() ;
+		canvas.moveTo(100,80) ;
+		canvas.lineTo(100,200) ; //cuerpito
+		canvas.lineTo(70,270) ; //pierna izquerda
+		canvas.moveTo(100,200) ;//pierna derecha
+		canvas.lineTo(130,270);
+
+		canvas.moveTo(100,90) ; 
+		canvas.lineTo(80,140) ; //brazo izquierdo
+		canvas.moveTo(100,90) ;
+		canvas.lineTo(120,140) ; //brazo derecho 
+		canvas.stroke() ;
+
+
+	</script>
+</body>
+</html>

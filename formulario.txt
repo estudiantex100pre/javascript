@@ -1,0 +1,21 @@
+Formulario 
+<form> action="url" METHOD="GET or POST" ENCTYPE
+
+<input> type="" value="" name="" size="" maxlength="" align=""
+
+<input type="radio, checkbox"> checked [name=value, name=(ON or off or value)] TABINDEX NOTAB. READONLY DISABLED
+<textarea name=""> rows"lineas" cols"size en cada linea" WRAP="off | soft | hard">
+
+<SELECT NAME="nombre" SIZE="nº_elementos_visibles"
+MULTIPLE ALIGN="alineamiento" TITLE="texto_bocadillo"
+TABINDEX="n" DISABLED>
+<optgroup>
+<OPTION SELECTED VALUE="nombre de esta opción" 
+TITLE="texto_bocadillo">
+</SELECT>
+
+<fieldset>  <legend> grupo de campos </fieldset>
+			html5
+<input> autocomplete, min, max, multiple,
+pattern(patrón), autofocus, placeholder, required y step(pasos) y 
+<datalist> list

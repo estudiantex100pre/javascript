@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>notifications</title>
+</head>
+<body>
+	<input type="button" name="" value="permisos" id="permisos">
+	<script type="text/javascript">
+		if (("Notification" in window)) 
+  		  console.log("Este navegador  es compatible con las notificaciones de escritorio");
+  		let respuesta ;
+		const permiso = document.getElementById('permisos') ;
+		permiso.addEventListener("click", ()=>{
+			if(Notification.permission  != "granted"){
+				console.log(respuesta, "respuesta")
+				getpermissions() ; 
+			}
+			else{ console.log("else")
+				notify()
+			}
+		})
+
+		function getpermissions() { console.log("hola")
+			Notification.requestPermission()
+			.then(res=>{ console.log("then",res)
+				if(res == "granted")
+					notify()
+			})
+			.catch(err=>console.log(err,"error"))
+		}
+
+		function notify() { console.log("en notificaciones")
+			const notificacion = new Notification("Hola!");
+		} 
+	</script>
+</body>
+</html>

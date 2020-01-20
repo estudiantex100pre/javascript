@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Axios</title>
+</head>
+<body>
+<h1>Axios</h1>
+	<input type="button" name="" value="get data" id="button">
+	<ul id="list">	
+	</ul>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
+		const button = document.getElementById('button') ;
+/*		button.addEventListener("click", ()=>{
+			axios({
+				method: "GET",
+				url: "https://jsonplaceholder.typicode.com/users"
+			}) 
+			.then(res => {// console.log(res.data)
+				const menu = document.getElementById('list')
+				const fragment = document.createDocumentFragment()
+				for(const instancia of res.data){
+					const list = document.createElement("li")
+					list.innerHTML = instancia.id + " " +instancia.name; 
+					fragment.append(list) ;
+				}
+				menu.append(fragment)
+			})
+			.catch(console.log)
+		})*/
+
+		button.addEventListener("click" , ()=>{ console.log("hola")
+			axios({
+				method: "POST",
+				url: "https://jsonplaceholder.typicode.com/users",
+				data: {
+					nombre: "nik",
+					apellido: "subero",
+					iduser: 2456 
+				}
+			})
+			.then(res => console.log(res.data))
+		})
+	</script>
+</body>
+</html>
